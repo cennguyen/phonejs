@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./screens/CartScreen";
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -80,8 +81,9 @@ function App() {
           </ul>
         </aside>
         <main>
+          <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/products/:id" component={ProductScreen} />
-        <Route path="/" component={HomeScreen} exact />
+          <Route path="/" component={HomeScreen} exact />
         </main>
         <footer className="row center">
           All right reserved. Design by Cen Nguyen
