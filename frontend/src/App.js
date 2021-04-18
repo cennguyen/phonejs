@@ -80,7 +80,7 @@ function App() {
           </ul>
         </aside>
         <main>
-          <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/products/:id" component={ProductScreen} />
         <Route path="/" component={HomeScreen} exact />
         </main>
         <footer className="row center">
