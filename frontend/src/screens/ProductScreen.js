@@ -21,7 +21,7 @@ export default function ProductScreen(props) {
             <li>
               <Rating
                 rating={product.rating}
-                numReviews={product.numReviews}
+                numReview={product.numReview}
               ></Rating>
             </li>
             <li>Pirce : ${product.price}</li>
@@ -47,7 +47,7 @@ export default function ProductScreen(props) {
                     {product.countInStock > 0 ? (
                       <span className="success">In Stock</span>
                     ) : (
-                      <span className="error">Unavailable</span>
+                      <span className="danger">Unavailable</span>
                     )}
                   </div>
                 </div>
