@@ -1,8 +1,9 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
+import { useSelector } from "react-redux";
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -10,6 +11,8 @@ function App() {
   const closeMenu = () => {
     document.querySelector(".sidebar").classList.remove("open");
   };
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -18,13 +21,16 @@ function App() {
             <button onClick={openMenu} className="sidebt">
               &#9776;
             </button>
-            <a className="brand" href="/">
+            <Link className="brand" to="/">
               CenPhoneJS
-            </a>
+            </Link>
           </div>
           <div>
-            <a href="/cart">Cart </a>
-            <a href="/login">Login</a>
+            <Link to="/cart">Cart</Link>
+            {cartItems.length > 0 && (
+              <span className="badge">{cartItems.length}</span>
+            )}
+            <Link to="/login"> Login</Link>
           </div>
         </header>
         <aside className="sidebar">
