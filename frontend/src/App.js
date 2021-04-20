@@ -4,6 +4,7 @@ import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import { useSelector } from "react-redux";
+import SigninScreen from "./screens/SigninScreen";
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -23,14 +24,14 @@ function App() {
             </button>
             <Link className="brand" to="/">
               CenPhoneJS
-            </Link>
+            </Link> 
           </div>
           <div>
             <Link to="/cart">Cart</Link>
             {cartItems.length > 0 && (
               <span className="badge">{cartItems.length}</span>
             )}
-            <Link to="/login"> Login</Link>
+            <Link to="/signin"> Login</Link>
           </div>
         </header>
         <aside className="sidebar">
@@ -89,6 +90,7 @@ function App() {
         <main>
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/products/:id" component={ProductScreen} />
+          <Route path="/signin" component={SigninScreen} />
           <Route path="/" component={HomeScreen} exact />
         </main>
         <footer className="row center">
