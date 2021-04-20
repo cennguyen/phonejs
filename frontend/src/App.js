@@ -3,8 +3,9 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SigninScreen from "./screens/SigninScreen";
+import { sigout } from "./actions/userAction";
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -13,7 +14,13 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open");
   };
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const { cartItems } = cart;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const signoutHandler = () => {
+    dispatch(sigout());
+  };
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -24,14 +31,30 @@ function App() {
             </button>
             <Link className="brand" to="/">
               CenPhoneJS
-            </Link> 
+            </Link>
           </div>
           <div>
-            <Link to="/cart">Cart</Link>
-            {cartItems.length > 0 && (
-              <span className="badge">{cartItems.length}</span>
+            <Link to="/cart">
+              Cart
+              {cartItems.length > 0 && (
+                <span className="badge">{cartItems.length}</span>
+              )}
+            </Link>
+            {userInfo ? (
+              <div className="dropdown">
+                <Link to="#">
+                  {userInfo.name}
+                  <i className="fa fa-caret-down"></i>
+                </Link>
+                <ul className="dropdown-content">
+                  <Link to="#signout" onClick={signoutHandler}>
+                    Logout
+                  </Link>
+                </ul>
+              </div>
+            ) : (
+              <Link to="/signin">  Login</Link>
             )}
-            <Link to="/signin"> Login</Link>
           </div>
         </header>
         <aside className="sidebar">
