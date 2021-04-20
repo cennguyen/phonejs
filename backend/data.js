@@ -1,7 +1,21 @@
+import bcrypt from "bcryptjs";
 const data = {
+  users: [
+    {
+      name: "cen",
+      email: "cen@gmail.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: true,
+    },
+    {
+      name: "bang",
+      email: "bang@gmail.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
-      _id: "1",
       name: "Iphone 12 Pro max",
       category: "phone",
       image: "/images/product1.jpg",
@@ -13,7 +27,6 @@ const data = {
       description: "sản phẩm từ apple luôn là đỉnh kout",
     },
     {
-      _id: "2",
       name: "Iphone 12 Pro ",
       category: "phone",
       image: "/images/product2.jpg",
@@ -25,7 +38,6 @@ const data = {
       description: "sản phẩm từ apple luôn là đỉnh kout",
     },
     {
-      _id: "3",
       name: "Iphone 12 mini",
       category: "phone",
       image: "/images/product3.jpg",
@@ -36,7 +48,6 @@ const data = {
       description: "sản phẩm từ apple luôn là đỉnh kout",
     },
     {
-      _id: "4",
       name: "Iphone 12",
       category: "phone",
       image: "/images/product4.jpg",
@@ -48,7 +59,6 @@ const data = {
       description: "sản phẩm từ apple luôn là đỉnh kout",
     },
     {
-      _id: "5",
       name: "Iphone 11 Pro max",
       category: "phone",
       image: "/images/product5.jpg",
@@ -61,7 +71,6 @@ const data = {
     },
 
     {
-      _id: "6",
       name: "Iphone 11 Pro ",
       category: "phone",
       image: "/images/product6.jpg",
@@ -73,7 +82,6 @@ const data = {
       description: "sản phẩm từ apple luôn là đỉnh kout",
     },
     {
-      _id: "7",
       name: "Iphone 11 ",
       category: "phone",
       image: "/images/product7.jpg",
