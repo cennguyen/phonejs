@@ -5,7 +5,8 @@ import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import { useDispatch, useSelector } from "react-redux";
 import SigninScreen from "./screens/SigninScreen";
-import { sigout } from "./actions/userAction";
+import { signout } from "./actions/userAction";
+import RegisterScreen from "./screens/RegisterScreen";
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -19,7 +20,7 @@ function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const signoutHandler = () => {
-    dispatch(sigout());
+    dispatch(signout());
   };
   return (
     <BrowserRouter>
@@ -53,7 +54,7 @@ function App() {
                 </ul>
               </div>
             ) : (
-              <Link to="/signin">  Login</Link>
+              <Link to="/signin"> Login</Link>
             )}
           </div>
         </header>
@@ -114,6 +115,7 @@ function App() {
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/products/:id" component={ProductScreen} />
           <Route path="/signin" component={SigninScreen} />
+          <Route path="/register" component={RegisterScreen} />
           <Route path="/" component={HomeScreen} exact />
         </main>
         <footer className="row center">

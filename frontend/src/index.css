@@ -210,7 +210,10 @@ img.signin {
 .rating span:last-child {
   color: #000;
 }
-
+/* Arlet */
+.loading {
+  display: block !important;
+}
 .success {
   color: #20a020;
 }
