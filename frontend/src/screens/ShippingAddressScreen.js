@@ -10,7 +10,7 @@ export default function ShippingAddressScreen(props) {
   const { shippingAddress } = cart;
 
   if (!userInfo) {
-    props.history.push("/signin");
+    props.history.push('/signin');
   }
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [address, setAddress] = useState(shippingAddress.address);
