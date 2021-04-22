@@ -16,15 +16,15 @@ export const generateToken = (user) => {
 };
 
 export const isAuth = (req, res, next) => {
-  const authorizaion = req.header.authorizaion;
-  if (authorizaion) {
-    const token = authorizaion.slice(7, authorizaion.length);
+  const authorization = req.headers.authorization;
+  if (authorization) {
+    const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
     jwt.verify(
       token,
-      process.env.JWT_SECRET || "somethingsecret",
-      (error, decode) => {
-        if (error) {
-          res.status(401).send({ message: "Invalid Token" });
+      process.env.JWT_SECRET || 'somethingsecret',
+      (err, decode) => {
+        if (err) {
+          res.status(401).send({ message: 'Invalid Token' });
         } else {
           req.user = decode;
           next();
@@ -32,6 +32,6 @@ export const isAuth = (req, res, next) => {
       }
     );
   } else {
-    res.status(401).send({ message: "No Token" });
+    res.status(401).send({ message: 'No Token' });
   }
 };
