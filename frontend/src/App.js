@@ -14,6 +14,10 @@ import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/PrivateRoute";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
+
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -70,6 +74,29 @@ function App() {
               </div>
             ) : (
               <Link to="/signin"> Login</Link>
+            )}
+            {userInfo && userInfo.isAdmin && (
+              <div className="dropdown">
+                <Link to="#admin">
+                  Admin{""}
+                  <i className="fa fa-caret-down"></i>
+                  <ul className="dropdown-content ">
+                    <li>
+                      <Link to="/dashboard">Dash Board</Link>
+                    </li>
+                    <li>
+                      <Link to="/productlist">Product List</Link>
+                    </li>
+                    <li>
+                      <Link to="/orders">Order List</Link>
+                    </li>
+
+                    <li>
+                      <Link to="/users">Users</Link>
+                    </li>
+                  </ul>
+                </Link>
+              </div>
             )}
           </div>
         </header>
@@ -136,7 +163,12 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="/orders/:id" component={OrderScreen} />
           <Route path="/orderhistory" component={OrderHistoryScreen} />
+          <Route path="/product/:id/edit" component={ProductEditScreen} />
           <PrivateRoute path="/profile" component={ProfileScreen} />
+          <AdminRoute
+            path="/productlist"
+            component={ProductListScreen}
+          ></AdminRoute>
           <Route path="/" component={HomeScreen} exact />
         </main>
         <footer className="row center">
