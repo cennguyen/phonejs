@@ -17,7 +17,7 @@ productRouter.get(
 productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
-    await Product.a({});
+    await Product.remove({});
     const createdProduct = await Product.insertMany(data.products);
     res.send({ createdProduct });
   })
@@ -85,4 +85,18 @@ productRouter.put(
 //     res.send({ products });
 //   })
 // );
+productRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const deleteProduct = await product.remove();
+      res.send({ message: "Delete Success", product: deleteProduct });
+    } else {
+      res.status(404).send({ message: "Product not found" });
+    }
+  })
+);
 export default productRouter;

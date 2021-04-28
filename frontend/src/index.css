@@ -93,9 +93,8 @@ button.small{
   font-size: 1.2rem;
 }
 /* Header*/
-header {
-  color: #ffffff;
-  padding: 1rem;
+header a{
+  padding: 0.1rem;
 }
 a.brand {
   color: rebeccapurple;
